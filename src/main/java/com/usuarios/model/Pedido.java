@@ -22,7 +22,7 @@ public class Pedido {
     @Column(nullable = false)
     private List<Integer> productos; // IDs de productos
 
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false)
     private String estado;
 
     @Column(nullable = false)

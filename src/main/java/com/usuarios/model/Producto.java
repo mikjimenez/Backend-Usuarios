@@ -13,13 +13,13 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String nombre;
 
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String descripcion;
 
-    @Column(length = 3, nullable = false)
+    @Column(nullable = false)
     private String talla;
 
     @Column(nullable = false)

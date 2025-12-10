@@ -18,13 +18,13 @@ public class Pago {
     @Column(nullable = false)
     private int pedidoId;
 
-    @Column(length = 15, nullable = false)
+    @Column(nullable = false)
     private String metodo; // E.g., "Tarjeta", "Transferencia", "Efectivo"
 
     @Column(nullable = false)
     private float monto;
 
-    @Column(length = 15, nullable = false)
+    @Column(nullable = false)
     private String estado; // E.g., "Pendiente", "Completado", "Fallido"
 
     @Column(nullable = false)
