@@ -1,0 +1,20 @@
+# Maven target
+target/
+
+# H2 database file
+*.mv.db
+*.trace.db
+
+# Logs
+*.log
+
+# Compiled Java classes
+*.class
+
+# JAR builds
+*.jar
+*.war
+
+# IntelliJ & VSCode
+.idea/
+.vscode/
