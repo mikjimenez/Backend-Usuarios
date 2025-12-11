@@ -18,6 +18,7 @@ public class DataInitConfig {
             if (usuarioRepository.count() == 0) {
                 Usuario admin = Usuario.builder()
                         .username("admin")
+                        .email("admin@admin.com")                 // 👈 email NO nulo
                         .password(passwordEncoder.encode("admin123"))
                         .role(Role.ROLE_ADMIN)
                         .build();
@@ -25,6 +26,7 @@ public class DataInitConfig {
 
                 Usuario user = Usuario.builder()
                         .username("user")
+                        .email("user@user.com")                   // 👈 email NO nulo
                         .password(passwordEncoder.encode("user123"))
                         .role(Role.ROLE_USER)
                         .build();
