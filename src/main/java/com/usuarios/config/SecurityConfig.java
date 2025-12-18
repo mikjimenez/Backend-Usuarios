@@ -1,8 +1,10 @@
 package com.usuarios.config;
 
+import com.usuarios.model.Role;
 import com.usuarios.model.Usuario;
 import com.usuarios.repository.UsuarioRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -93,9 +95,16 @@ public class SecurityConfig {
         return username -> {
             Usuario usuario = usuarioRepository.findByEmail(username)
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+
+            // Mapea roles de BD (ej: ROLE_USER, ROLE_ADMIN) a GrantedAuthority
+            var authorities = usuario.getRoles().stream()
+                    .map(Role::getName)
+                    .map(SimpleGrantedAuthority::new)
+                    .toList();
+
             return User.withUsername(usuario.getEmail())
                     .password(usuario.getPassword())
-                    .roles("USER")
+                    .authorities(authorities)
                     .build();
         };
     }
