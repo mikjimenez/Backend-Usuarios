@@ -78,15 +78,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-
-        // origen del frontend
         config.setAllowedOriginPatterns(List.of("http://localhost:3000"));
-        // o, si quieres más abierto en desarrollo:
-        // config.setAllowedOriginPatterns(List.of("*"));
-
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-        config.setAllowCredentials(true); // si usas cookies o auth con credenciales
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true); 
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
@@ -98,12 +93,9 @@ public class SecurityConfig {
         return username -> {
             Usuario usuario = usuarioRepository.findByEmail(username)
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
-
-            // Por ahora asumimos que todos son USER.
-            // Más adelante podemos leer el rol real desde usuario.getRole().
             return User.withUsername(usuario.getEmail())
                     .password(usuario.getPassword())
-                    .roles("USER")  // genera autoridad ROLE_USER
+                    .roles("USER")
                     .build();
         };
     }

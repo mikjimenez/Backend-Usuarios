@@ -7,6 +7,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "productos")
 public class Producto {
     @Id
@@ -15,6 +16,9 @@ public class Producto {
 
     @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
+    private String material;
 
     @Column(nullable = false)
     private String descripcion;
@@ -27,4 +31,11 @@ public class Producto {
 
     @Column(nullable = false)
     private int stock;
-}   
+
+    @Column(nullable = false)
+    private String categoria;
+
+    @Column(nullable = true)
+    private String imageUrl;
+}
+   
